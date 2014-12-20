@@ -1,0 +1,21 @@
+name: Migrate
+version: 0.1
+build-type: Custom
+license: BSD3
+license-file: LICENSE
+maintainer: corentin.dupont@gmail.com
+synopsis: 
+description: 
+category: game
+Homepage: 
+author: Corentin Dupont
+ 
+executable Migrate
+    build-depends: 
+                   base                   >= 4.6 && <5,
+    main-is: Main.hs
+    buildable: True
+    hs-source-dirs: src
+    other-modules: Main 
+    ghc-options: -W -threaded
+ 
