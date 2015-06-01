@@ -13,8 +13,7 @@ author: Corentin Dupont
 executable Migrate
     build-depends: base, 
                    safecopy, 
-                   cereal, 
-                   missingH==1.3.*
+                   cereal 
     main-is: Main.hs
     buildable: True
     hs-source-dirs: src
