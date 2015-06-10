@@ -9,7 +9,6 @@ import Git
 import System.IO
 import qualified Data.ByteString.Char8 as LBS
 import Data.Tagged
-import Conduit
 import Git.CmdLine
 import Data.Text hiding (drop, length, isPrefixOf)
 import Data.List
@@ -19,7 +18,7 @@ import           Control.Monad.Reader.Class
 import           Control.Monad.Trans.Reader (ReaderT, runReaderT)
 import Data.Maybe
 import Control.Monad
-
+import System.Directory (createDirectoryIfMissing)
 
 type Version = String
 type ModuleName = String
@@ -29,7 +28,7 @@ data Conf = Conf { optGitDir :: FilePath }
 
 tagPath = "refs/tags/"
 autogenPath = "dist/build/autogen/"
-
+defaultConf = Conf ".git"
 
 -- Get a file in a given version
 -- this correspond to the following sequence of GIT commands:
@@ -74,6 +73,7 @@ retrieveAndSave modName conf v = do
    f <- getFileVersion' v ("src/" ++ modName ++ ".hs") conf
    when (isJust f) $ do
       let renamed = tagModuleName modName v (fromJust f)
+      createDirectoryIfMissing True $ autogenPath
       writeFile (autogenPath ++ modName ++ v ++ ".hs") renamed
 
 tagModuleName :: ModuleName -> Version -> String -> String
@@ -90,8 +90,7 @@ rep _ _ [] = []
 
 
 
-cliShow :: MonadCli m
-           => Text -> ReaderT CliRepo m (Maybe TL.Text)
+cliShow :: MonadCli m  => Text -> ReaderT CliRepo m (Maybe TL.Text)
 cliShow mobj = do
     repo <- getRepository
     shelly $ errExit False $ do

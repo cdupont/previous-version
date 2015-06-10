@@ -1,0 +1,29 @@
+name: previous-version
+version: 0.1
+build-type: Simple
+license: BSD3
+maintainer: corentin.dupont@gmail.com
+synopsis: 
+description: 
+category: 
+Homepage: 
+build-type: Simple
+author: Corentin Dupont
+ 
+library
+    build-depends: base, 
+                   gitlib,
+                   gitlib-cmdline,
+                   bytestring,
+                   shelly,
+                   tagged,
+                   text,
+                   conduit,
+                   transformers,
+                   mtl,
+                   directory
+    buildable: True
+    hs-source-dirs: src
+    exposed-modules: PreviousVersion
+    ghc-options: -W -threaded
+ 
