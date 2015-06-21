@@ -7,6 +7,7 @@ synopsis:
 description: 
 category: 
 Homepage: 
+cabal-version: >= 1.2
 build-type: Simple
 author: Corentin Dupont
  
@@ -21,9 +22,32 @@ library
                    conduit,
                    transformers,
                    mtl,
-                   directory
+                   directory,
+                   haskell-src-exts,
+                   parsec
+
     buildable: True
     hs-source-dirs: src
     exposed-modules: PreviousVersion
     ghc-options: -W -threaded
  
+executable PVPreprocess
+    build-depends: base,
+                   gitlib,
+                   gitlib-cmdline,
+                   bytestring,
+                   shelly,
+                   tagged,
+                   text,
+                   conduit,
+                   transformers,
+                   mtl,
+                   directory,
+                   haskell-src-exts,
+                   parsec
+    buildable: True
+    hs-source-dirs: src
+    main-is: PrePro.hs
+    other-modules: PrePro, PreviousVersion
+    ghc-options: -W -threaded
+
