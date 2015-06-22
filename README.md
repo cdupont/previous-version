@@ -1,13 +1,13 @@
 Previous Version
 ================
 
-Previous Version is a simple Haskell tool that allow to retrieve several versions of the same module from git.
-File and module names are annotated using there version tag. For example "MyModule.hs" becomes "MyModuleV1.hs".
+Previous Version is a simple Haskell tool that allows retrieving several versions of the same module from git.
+The preprocessor will analyse the imports from your Haskell files and extract the corresponding versions.
 
 Usage
 =====
 
-Add the following line in your Haskell file:
+Add the following line in the header of your Haskell file:
 
 ```
 {-# OPTIONS_GHC -F -pgmF prevproc #-}
